@@ -1,4 +1,4 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework import generics
 from .models import (
     Categoria, Producto, PersonalizacionProducto,
     Inventario, Opinion, MetodoPago, Pedido,
@@ -10,86 +10,86 @@ from .serializers import (
     PedidoSerializer, DetallePedidoSerializer, PagoSerializer
 )
 
-class CategoriaListView(ListAPIView):
+class CategoriaListView(generics.ListCreateAPIView):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
 
-class CategoriaDetailView(RetrieveAPIView):
+class CategoriaDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
 
 
-class ProductoListView(ListAPIView):
+class ProductoListView(generics.ListCreateAPIView):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
 
-class ProductoDetailView(RetrieveAPIView):
+class ProductoDetailView(generics.DestroyAPIView):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
 
-class PersonalizacionProductoListView(ListAPIView):
+class PersonalizacionProductoListView(generics.ListCreateAPIView):
     queryset = PersonalizacionProducto.objects.all()
     serializer_class = PersonalizacionProductoSerializer
 
-class PersonalizacionProductoDetailView(RetrieveAPIView):
+class PersonalizacionProductoDetailView(generics.DestroyAPIView):
     queryset = PersonalizacionProducto.objects.all()
     serializer_class = PersonalizacionProductoSerializer
 
 
-class InventarioListView(ListAPIView):
+class InventarioListView(generics.ListCreateAPIView):
     queryset = Inventario.objects.all()
     serializer_class = InventarioSerializer
 
 
-class InventarioDetailView(RetrieveAPIView):
+class InventarioDetailView(generics.DestroyAPIView):
     queryset = Inventario.objects.all()
     serializer_class = InventarioSerializer
 
 
-class OpinionListView(ListAPIView):
+class OpinionListView(generics.ListCreateAPIView):
     queryset = Opinion.objects.all()
     serializer_class = OpinionSerializer
 
-class OpinionDetailView(RetrieveAPIView):
+class OpinionDetailView(generics.DestroyAPIView):
     queryset = Opinion.objects.all()
     serializer_class = OpinionSerializer
 
 
-class MetodoPagoListView(ListAPIView):
+class MetodoPagoListView(generics.ListCreateAPIView):
     queryset = MetodoPago.objects.all()
     serializer_class = MetodoPagoSerializer
 
-class MetodoPagoDetailView(RetrieveAPIView):
+class MetodoPagoDetailView(generics.DestroyAPIView):
     queryset = MetodoPago.objects.all()
     serializer_class = MetodoPagoSerializer
 
 
 
-class PedidoListView(ListAPIView):
+class PedidoListView(generics.ListCreateAPIView):
     queryset = Pedido.objects.all()
     serializer_class = PedidoSerializer
 
 
-class PedidoDetailView(RetrieveAPIView):
+class PedidoDetailView(generics.DestroyAPIView):
     queryset = Pedido.objects.all()
     serializer_class = PedidoSerializer
 
 
 
-class DetallePedidoListView(ListAPIView):
+class DetallePedidoListView(generics.ListCreateAPIView):
     queryset = DetallePedido.objects.all()
     serializer_class = DetallePedidoSerializer
 
 
-class DetallePedidoDetailView(RetrieveAPIView):
+class DetallePedidoDetailView(generics.DestroyAPIView):
     queryset = DetallePedido.objects.all()
     serializer_class = DetallePedidoSerializer
 
 
-class PagoListView(ListAPIView):
+class PagoListView(generics.ListCreateAPIView):
     queryset = Pago.objects.all()
     serializer_class = PagoSerializer
 
-class PagoDetailView(RetrieveAPIView):
+class PagoDetailView(generics.DestroyAPIView):
     queryset = Pago.objects.all()
     serializer_class = PagoSerializer
