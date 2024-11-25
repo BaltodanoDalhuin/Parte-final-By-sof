@@ -7,7 +7,8 @@ class Categoria(models.Model):
     descripcion = models.TextField()
 
     def __str__(self):
-        return self.nombre_categoria
+        return f"{self.nombre_categoria} - {self.descripcion}"
+
 
 class Producto(models.Model):
     nombre_producto = models.CharField(max_length=255)
@@ -19,21 +20,26 @@ class Producto(models.Model):
     estado = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.nombre_producto
+         return f"{self.nombre_producto} - {self.descripcion} - {self.precio} - {self.categoria} - {self.imagen_url} - {self.fecha_creacion} - {self.estado}"
+    
 
 class PersonalizacionProducto(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     detalle_personalizacion = models.CharField(max_length=255)
-    opciones = models.TextField()
 
     def __str__(self):
-        return f"{self.tipo_personalizacion} - {self.producto.nombre_producto}"
+        return f"{self.usuario} - {self.producto} - {self.detalle_personalizacion}"
+
 
 class Inventario(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad_disponible = models.IntegerField()
     fecha_actualizacion = models.DateField()
+
+    def __str__(self):
+        return f"{self.producto} - {self.cantidad_disponible} - {self.fecha_actualizacion}"
+
 
 class Opinion(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
@@ -42,15 +48,26 @@ class Opinion(models.Model):
     comentario = models.TextField()
     fecha_opinion = models.DateField()
 
+    def __str__(self):
+        return f"{self.usuario} - {self.producto} - {self.calificacion} - {self.comentario} - {self.fecha_opinion}"
+
+
 class MetodoPago(models.Model):
     nombre_metodo = models.CharField(max_length=255)
     detalles = models.TextField()
+
+    def __str__(self):
+        return f"{self.nombre_metodo} - {self.detalles}"
+
 
 class Pedido(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     fecha_pedido = models.DateField()
     estado = models.CharField(max_length=50)
     total = models.FloatField()
+
+    def __str__(self):
+        return f"{self.usuario} - {self.fecha_pedido} - {self.estado} - {self.total}"
 
 
 class DetallePedido(models.Model):
@@ -60,9 +77,15 @@ class DetallePedido(models.Model):
     personalizacion = models.TextField()
     precio = models.FloatField()
 
+    def __str__(self):
+        return f"{self.pedido} - {self.producto} - {self.cantidad} - {self.personalizacion} - {self.precio}"
+
 
 class Pago(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     metodo_pago = models.ForeignKey(MetodoPago, on_delete=models.CASCADE)
     monto = models.FloatField()
     fecha_pago = models.DateField()
+
+    def __str__(self):
+        return f"{self.pedido} - {self.metodo_pago} - {self.monto} - {self.fecha_pago}"
